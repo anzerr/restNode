@@ -30,8 +30,9 @@ module.exports = function(url, handle, req, re) {
 		console.log('json: ', json);
 		if (json != null) {
 			handle.query('UPDATE user SET ? where id = ' + Number(path[path.length - 1]), json, function(error, result) {
+				console.log(error, result)
 				if (!error && result.affectedRows !== 0) {
-					res.writeHead(201, {'Content-Type': 'application/json'});
+					res.writeHead(200, {'Content-Type': 'application/json'});
 					res.end(JSON.stringify({
 						id: Number(path[path.length - 1])
 					}));
