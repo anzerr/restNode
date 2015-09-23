@@ -58,8 +58,8 @@ var http = require('http'), mysql = require('mysql'), url = require('url');
 var handle = mysql.createConnection({
 	host     : '127.0.0.1',
 	user     : 'root',
-	password : '',
-	database : 'tcm_rest'
+	password : 'root',
+	database : 'rest'
 });
 
 handle.connect(function(err) {
