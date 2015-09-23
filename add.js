@@ -23,6 +23,7 @@ module.exports = function(url, handle, req, res) {
 			console.log(e);
 		}
 		
+		console.log(json);
 		if (json != null) {
 			handle.query('SELECT * FROM user WHERE email = ?', [json.email || ''], function(error, results, fields) {
 				if (results.length == 0) {
