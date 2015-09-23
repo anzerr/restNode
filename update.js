@@ -37,10 +37,10 @@ module.exports = function(url, handle, req, re) {
 						id: Number(path[path.length - 1])
 					}));
 				} else {
-					res.writeHead(400, {'Content-Type': 'application/json'});
+					res.writeHead(204, {'Content-Type': 'application/json'});
 					res.end(JSON.stringify({
-						status: 400,
-						message: 'bad request'
+						status: 204,
+						message: 'no content'
 					}));
 				}
 			});
