@@ -10,6 +10,7 @@ module.exports = function(url, handle, req, res) {
 		}
 	});
 	req.on('end', function() {
+		console.log('body:', body);
 		var json = null;
 		try {
 			var a = JSON.parse(body), b = {};
@@ -23,7 +24,7 @@ module.exports = function(url, handle, req, res) {
 			console.log(e);
 		}
 		
-		console.log(json);
+		console.log('json: ', json);
 		if (json != null) {
 			handle.query('SELECT * FROM user WHERE email = ?', [json.email || ''], function(error, results, fields) {
 				if (results.length == 0) {

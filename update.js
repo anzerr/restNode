@@ -13,6 +13,7 @@ module.exports = function(url, handle, req, re) {
 	var path = url.split('/');
 	console.log(path);
 	req.on('end', function() {
+		console.log('body:', body);
 		var json = null;
 		try {
 			var a = JSON.parse(body), b = {};
@@ -26,7 +27,7 @@ module.exports = function(url, handle, req, re) {
 			console.log(e);
 		}
 		
-		console.log(json);
+		console.log('json: ', json);
 		if (json != null) {
 			handle.query('UPDATE user SET ? where id = ' + handle.escapeId(path[path.length - 1]), json, function(error, result) {
 				if (!error && result.affectedRows !== 0) {
