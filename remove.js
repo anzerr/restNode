@@ -12,7 +12,7 @@ module.exports = function(url, handle, req, re) {
 		} else {
 			res.writeHead(400, {'Content-Type': 'application/json'});
 			res.end(JSON.stringify({
-				staus: 400,
+				status: 400,
 				message: 'bad request'
 			}));
 		}

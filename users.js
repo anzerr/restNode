@@ -25,7 +25,7 @@ module.exports = function(url, handle, req, res) {
 				} else {
 					res.writeHead(401, {'Content-Type': 'application/json'});
 					res.end(JSON.stringify({
-						staus: 401,
+						status: 401,
 						message: 'unauthorized'
 					}));
 				}
@@ -36,7 +36,7 @@ module.exports = function(url, handle, req, res) {
 				} else {
 					res.writeHead(401, {'Content-Type': 'application/json'});
 					res.end(JSON.stringify({
-						staus: 401,
+						status: 401,
 						message: 'unauthorized'
 					}));
 				}
@@ -44,7 +44,7 @@ module.exports = function(url, handle, req, res) {
 		} else {
 			res.writeHead(404, {'Content-Type': 'application/json'});
 			res.end(JSON.stringify({
-				staus: 404,
+				status: 404,
 				message: 'not found'
 			}));
 		}
