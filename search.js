@@ -4,7 +4,9 @@ module.exports = function(abs, handle, req, res) {
 	var query = (url.parse(req.url, true)).query;
 	console.log(query);
 	
-	handle.query('SELECT * FROM `user` WHERE `email` like `%' + handle.escape(query.q) + '%`', function(error, results, fields) {
+	var query = 'SELECT * FROM `user` WHERE `email` like \'%' + handle.escape(query.q) + '%\'';
+	console.log(query);
+	handle.query(query, function(error, results, fields) {
 		for (var i in results) {
 			delete results[i].password;
 			if (results[i].role === 'admin') {
