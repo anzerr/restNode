@@ -4,7 +4,7 @@ module.exports = function(abs, handle, req, res) {
 	var query = (url.parse(req.url, true)).query;
 	console.log(query);
 	
-	var query = 'SELECT * FROM `user` WHERE `email` like \'%' + handle.escape(query.q) + '%\'';
+	var query = 'SELECT * FROM `user` WHERE `email` like \'%' + query.q + '%\'';
 	console.log(query);
 	handle.query(query, function(error, results, fields) {
 		for (var i in results) {
