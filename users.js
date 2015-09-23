@@ -14,6 +14,7 @@ module.exports = function(url, handle, req, res) {
 		if (!error && results.length !== 0) {
 			if (results.length !== 1) {
 				for (var i in results) {
+					delete results[i].password;
 					if (results[i].role == 'admin') {
 						results.splice(i, 1);
 					}
@@ -31,6 +32,7 @@ module.exports = function(url, handle, req, res) {
 				}
 			} else {
 				if (results[0].role !== 'admin') { // is not admin
+					delete results[0].password;
 					res.writeHead(200, {'Content-Type': 'application/json'});
 					res.end(JSON.stringify(results[0]));
 				} else {
