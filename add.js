@@ -24,20 +24,30 @@ module.exports = function(url, handle, req, res) {
 		}
 		
 		if (json != null) {
-			handle.query('INSERT INTO user SET ?', json, function(error, result) {
-				if (!error) {
-					res.writeHead(201, {'Content-Type': 'application/json'});
-					res.end(JSON.stringify({
-						id: result.insertId
-					}));
+			handle.query('SELECT * FROM user WHERE email = ?', [json.email || ''], function(error, results, fields) {
+				if (results.length == 0) {
+					handle.query('INSERT INTO user SET ?', json, function(error, result) {
+						if (!error) {
+							res.writeHead(201, {'Content-Type': 'application/json'});
+							res.end(JSON.stringify({
+								id: result.insertId
+							}));
+						} else {
+							res.writeHead(400, {'Content-Type': 'application/json'});
+							res.end(JSON.stringify({
+								status: 400,
+								message: 'bad request'
+							}));
+						}
+					});
 				} else {
 					res.writeHead(400, {'Content-Type': 'application/json'});
 					res.end(JSON.stringify({
 						status: 400,
-						message: 'bad request'
+						message: 'email already exists'
 					}));
 				}
-			});
+			}
 		} else {
 			res.writeHead(400, {'Content-Type': 'application/json'});
 			res.end(JSON.stringify({
