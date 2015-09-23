@@ -1,5 +1,5 @@
 
-module.exports = function(url, handle, req, re) {
+module.exports = function(url, handle, req, res) {
 	var body = '';
 	req.on('data', function(data) {
 		body += data;
