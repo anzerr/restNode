@@ -83,16 +83,43 @@ handle.connect(function(err) {
 				return (search(abs, handle, req, res));
 			}
 			
-			if (isPath('\/users\/?', abs) && req.method == 'POST' && role == 'admin') {
-				return (add(abs, handle, req, res));
+			if (isPath('\/users\/?', abs) && req.method == 'POST') {
+				if (role == 'admin') {
+					return (add(abs, handle, req, res));
+				} else {
+					res.writeHead(401, {'Content-Type': 'application/json'});
+					res.end(JSON.stringify({
+						status: 401,
+						message: 'unauthorized'
+					}));
+					return;
+				}
 			}
 			
-			if (isPath('\/users\/[0-9]+', abs) && req.method == 'PUT' && role == 'admin') {
-				return (update(abs, handle, req, res));
+			if (isPath('\/users\/[0-9]+', abs) && req.method == 'PUT') {
+				if (role == 'admin') {
+					return (update(abs, handle, req, res));
+				} else {
+					res.writeHead(401, {'Content-Type': 'application/json'});
+					res.end(JSON.stringify({
+						status: 401,
+						message: 'unauthorized'
+					}));
+					return;
+				}
 			}
 			
-			if (isPath('\/users\/[0-9]+', abs) && req.method == 'DELETE' && role == 'admin') {
-				return (remove(abs, handle, req, res));
+			if (isPath('\/users\/[0-9]+', abs) && req.method == 'DELETE') {
+				if (role == 'admin') {
+					return (remove(abs, handle, req, res));
+				} else {
+					res.writeHead(401, {'Content-Type': 'application/json'});
+					res.end(JSON.stringify({
+						status: 401,
+						message: 'unauthorized'
+					}));
+					return;
+				}
 			}
 			
 			if (abs == '/') {
