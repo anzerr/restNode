@@ -1,6 +1,6 @@
 
 var isPath = function(regex, path) {
-	var r = new RegExp(regex);
+	var r = new RegExp(regex, 'ig');
 	return (r.test(path));
 }
 
@@ -30,7 +30,7 @@ handle.connect(function(err) {
 		var abs = url.parse(req.url).pathname;
 		console.log(abs, req.method);
 		
-		if (isPath('\/users\/[0-9]+', abs) && req.method == 'GET') {
+		if (isPath('\/users\/[0-9]*', abs) && req.method == 'GET') {
 			return (users(abs, handle, req, res));
 		}
 		

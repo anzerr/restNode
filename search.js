@@ -7,7 +7,7 @@ module.exports = function(abs, handle, req, res) {
 	handle.query('SELECT * FROM `user` WHERE `email` = ?', [query.q], function(error, results, fields) {
 		for (var i in results) {
 			if (results[i].role === 'admin') {
-				results.splice(1, i);
+				results.splice(i, 1);
 			}
 		}
 		
