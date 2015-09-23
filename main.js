@@ -14,7 +14,7 @@ var auth = function(req, res, handle, callback) {
 	if (!auth) {     // No Authorization header was passed in so it's the first time the browser hit us
 		res.writeHead(401, {'Content-Type': 'application/json'});
 		res.end(JSON.stringify({
-			staus: 401,
+			status: 401,
 			message: 'unauthorized'
 		}));
 	} else if(auth) {    // The Authorization was passed in so now we validate it
@@ -35,7 +35,7 @@ var auth = function(req, res, handle, callback) {
 			} else {
 				res.writeHead(401, {'Content-Type': 'application/json'});
 				res.end(JSON.stringify({
-					staus: 401,
+					status: 401,
 					message: 'unauthorized'
 				}));
 			}
